@@ -1,0 +1,36 @@
+{
+  "name": "io.cordova.hellocordova",
+  "displayName": "HelloCordova",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^12.0.1",
+    "cordova-browser": "^7.0.0",
+    "cordova-plugin-badge": "^0.8.9",
+    "cordova-plugin-calendar": "^5.1.6",
+    "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-local-notification": "^0.9.0-beta.2",
+    "cordova-plugin-local-notifications": "^1.0.0",
+    "tailwindcss": "^3.3.5",
+    "windows": "^0.1.2"
+  },
+  "cordova": {
+    "platforms": [
+      "android",
+      "browser"
+    ],
+    "plugins": {
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-calendar": {}
+    }
+  }
+}
