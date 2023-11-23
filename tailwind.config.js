@@ -7,8 +7,6 @@ module.exports = {
       fontFamily:{
         Coiny: ['Coiny', 'Sriracha', 'Varela']
       }
-
-
     },
   },
   plugins: [],

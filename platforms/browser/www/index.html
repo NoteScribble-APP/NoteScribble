@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta
-      name="viewport"
-      content="initial-scale=1, width=device-width, viewport-fit=cover"
-    />
-    <meta name="color-scheme" content="light" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="ht tps://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&family=Coiny&family=Sriracha&family=Varela+Round&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="output.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <title>NoteScribble</title>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover"/>
+  <meta name="color-scheme" content="light" />
+  <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&family=Coiny&family=Sriracha&family=Varela+Round&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="output.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <title>NoteScribble</title>
+</head>
 
-  <body class="font-Coiny bg-index">
+<body class="font-Coiny bg-index">
+  
+  <div class="h-screen flex flex-col items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20">
 
-    <script src="cordova.js"></script>
-    <script src="js/index.js"></script>
-  </body>
+    <h1 class="text-4xl sm:text-5xl text-white shadow-2xl font-bold mb-4 sm:mb-6 text-center">Bienvenido a NoteScribble</h1>
+
+    <img class="w-[50%] sm:w-[40%] md:w-[30%] lg:w-[25%] xl:w-[20%] mb-4" src="./img/logo.png" alt="">
+
+    <p class="pb-3 text-xl sm:text-2xl sm:pb-0 text-white 
+              line-clamp-6 mb-4 text-center"
+    >Inicia sesión para guardar tus notas en la nube,</p>
+
+    <p class="pb-3 text-xl sm:text-2xl text-white mb-4 text-center"
+    >o continúa sin iniciar sesión para guardarlas solo en tu dispositivo.</p>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+
+        <a class="p-3 sm:p-5 w-full sm:w-40 h-10 bg-yellow-500 rounded flex items-center justify-center 
+                  transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-700 
+                  hover:text-white mx-auto" href="./app/login.html"
+        >Iniciar sesión</a>
+
+        <a class="p-3 sm:p-5 w-full sm:w-40 h-10 bg-yellow-500 rounded flex items-center justify-center 
+                      transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-700 
+                      hover:text-white mx-auto" href="./app/Notes.html"
+        >Continuar</a>
+
+    </div>
+
+</div>
+  
+  <script src="cordova.js"></script>
+  <script src="js/index.js"></script>
+</body>
 </html>

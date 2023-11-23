@@ -8,3 +8,16 @@
     background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 } 
 
+.br-2.anim{
+    opacity: 0;
+}
+
+.br-1.anim {
+    transform: rotate(45deg) translate(9px, 8px);
+    transform-origin: 0 0;
+}
+
+.br-3.anim {
+    transform: rotate(-45deg) translate(-6px, 8px);
+    transform-origin: 0 0;
+}
