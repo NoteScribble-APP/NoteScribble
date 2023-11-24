@@ -121,7 +121,24 @@
 
   </div>
 
-
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content bg-orange-600 p-4 sm:p-6 rounded-md shadow-md sm:w-[50%] mx-auto">
+      <span class="close text-white cursor-pointer" onclick="closeEditForm()">&times;</span>
+      <h2 class="text-white mb-4 text-2xl font-semibold">Editar Nota</h2>
+      <form id="editForm">
+        <div class="mb-4">
+          <label for="editTitle" class="block text-white mb-2 font-medium">Título:</label>
+          <input type="text" id="editTitle" name="editTitle" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="editContent" class="block text-white mb-2 font-medium">Contenido:</label>
+          <textarea id="editContent" name="editContent" rows="4" class="w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-blue-500"></textarea>
+        </div>
+        <button type="button" onclick="saveEdit()" class="bg-blue-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-700 focus:outline-none">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+  
   
   <script src="../js/db.js"></script>
   <script src="../cordova.js"></script>
