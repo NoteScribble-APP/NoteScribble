@@ -45,10 +45,23 @@ function LoginUser(){
     })
     .then(response => response.json())
     .then(data => {
-        alert('Sesion iniciada correctamente')
-        console.log(data)
+
+        const accessToken = data.user._id;
+        if (accessToken !== undefined && accessToken !== null) {
+            localStorage.setItem('accessToken', accessToken);
+            //saveNotesLocally(data.notas);
+
+            alert('Sesión iniciada correctamente');
+            console.log(data);
+
+            window.location.href = '../app/Notes.html';
+        } else {
+            console.log('No se recibió un token válido.');
+            console.log(data);
+        }
     })
     .catch(error =>{
+        alert("Error al iniciar sesion, revisa tus campos")
         console.log('Error al realizar solicitud: ', error)
     })
 }
