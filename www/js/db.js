@@ -90,7 +90,7 @@ function showNotes() {
                 const editButton = document.createElement("button");
                 editButton.textContent = "Editar";
                 editButton.style.marginRight = "10px"
-                editButton.classList.add("bg-blue-500", "text-white", "py-2", "px-4", "rounded", "border",  "border-blue-700", "hover:bg-blue-700", "hover:border-blue-900", "transition", "duration-300", "ease-in-out", "transform", "hover:scale-105");
+                editButton.classList.add("bg-yellow-500", "text-white", "py-2", "px-4", "rounded", "border",  "border-blue-700", "hover:bg-blue-700", "hover:border-blue-900", "transition", "duration-300", "ease-in-out", "transform", "hover:scale-105");
                 editButton.addEventListener("click", function () {
                     editNote(index);
                 });
@@ -98,7 +98,7 @@ function showNotes() {
 
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Eliminar";
-                deleteButton.classList.add("bg-blue-500", "text-white", "py-2", "px-4", "rounded", "border",  "border-blue-700", "hover:bg-blue-700", "hover:border-blue-900", "transition", "duration-300", "ease-in-out", "transform", "hover:scale-105");
+                deleteButton.classList.add("bg-red-500", "text-white", "py-2", "px-4", "rounded", "border",  "border-blue-700", "hover:bg-blue-700", "hover:border-blue-900", "transition", "duration-300", "ease-in-out", "transform", "hover:scale-105");
                 deleteButton.addEventListener("click", function () {
                     deleteNote(index);
                     showNotes();

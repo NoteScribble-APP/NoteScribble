@@ -100,21 +100,21 @@
     </div>
 
     <!-- ADDNOTE -->
-    <div id="formularioNota" class="hidden mt-4 mx-4 sm:w-[50%] bg-orange-600 p-4 sm:p-6 rounded-md shadow-md">
+    <div id="formularioNota" class="hidden mt-4 mx-4 sm:w-[50%] bg-blue-500 p-4 sm:p-6 rounded-md shadow-md">
       <form id="formAgregarNota">
         <div class="mb-2 sm:mb-4">
-          <label for="titulo" class="block text-black mb-1 sm:mb-2">Título:</label>
+          <label for="titulo" class="block text-white mb-1 sm:mb-2">Título:</label>
           <input type="text" id="inputTitle" name="inputTitle" class="w-full p-2 border border-gray-300 rounded-md">
         </div>
         <div class="mb-2 sm:mb-4">
-          <label for="inputContent" class="block text-black mb-1 sm:mb-2">Contenido:</label>
+          <label for="inputContent" class="block text-white mb-1 sm:mb-2">Contenido:</label>
           <textarea id="inputContent" name="inputContent" rows="8" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
         </div>
-        <button type="button" id="btnAddNote" class="bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-700">Guardar Nota</button>
+        <button type="button" id="btnAddNote" class="bg-yellow-500 text-white px-3 sm:px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-700">Guardar Nota</button>
       </form>
     </div>
     
-    <div id="listadoNotas" class="hidden mt-4 mx-4 sm:w-[50%] bg-orange-600 p-4 sm:p-6 rounded-md shadow-md mb-5">
+    <div id="listadoNotas" class="hidden mt-4 mx-4 sm:w-[50%] bg-blue-500 p-4 sm:p-6 rounded-md shadow-md mb-5">
       <h1 id="sinNotas" class="hidden text-center text-white text-xl mb-4">No hay notas</h1>
       <ul id="notasList" class="list-disc text-white"></ul>
     </div>
@@ -122,7 +122,7 @@
   </div>
 
   <div id="editModal" class="modal hidden">
-    <div class="modal-content bg-orange-600 p-4 sm:p-6 rounded-md shadow-md sm:w-[50%] mx-auto">
+    <div class="modal-content bg-blue-500 p-4 sm:p-6 rounded-md shadow-md sm:w-[50%] mx-auto">
       <span class="close text-white cursor-pointer" onclick="closeEditForm()">&times;</span>
       <h2 class="text-white mb-4 text-2xl font-semibold">Editar Nota</h2>
       <form id="editForm">
@@ -134,7 +134,7 @@
           <label for="editContent" class="block text-white mb-2 font-medium">Contenido:</label>
           <textarea id="editContent" name="editContent" rows="4" class="w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-blue-500"></textarea>
         </div>
-        <button type="button" onclick="saveEdit()" class="bg-blue-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-700 focus:outline-none">Guardar Cambios</button>
+        <button type="button" onclick="saveEdit()" class="bg-yellow-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-700 focus:outline-none">Guardar Cambios</button>
       </form>
     </div>
   </div>
