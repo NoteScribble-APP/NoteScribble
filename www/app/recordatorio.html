@@ -87,56 +87,7 @@
         </nav>
       </header>
       
-      <div class="container mx-auto mt-8 p-4">
-        <h1 class="text-center text-white text-4xl mb-8">Calendario</h1>
-    
-        <div class="calendar-container bg-blue-500 rounded-md p-6 shadow-md">
-          <div class="calendar-header flex items-center justify-between mb-4">
-            <button id="prevBtn" class="px-2 py-1 bg-gray-200 rounded">&lt;</button>
-            <h2 id="monthYear" class="text-xl font-bold text-white"></h2>
-            <button id="nextBtn" class="px-2 py-1 bg-gray-200 rounded">&gt;</button>
-          </div>
-    
-          <!-- Agregar nombres de los días de la semana -->
-          <div class="grid grid-cols-7 gap-2 text-white text-center mb-4">
-            <div>Dom</div>
-            <div>Lun</div>
-            <div>Mar</div>
-            <div>Mié</div>
-            <div>Jue</div>
-            <div>Vie</div>
-            <div>Sáb</div>
-          </div>
-    
-          <!-- Resto del calendario -->
-          <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-white"></div>
-        </div>
-    
-        <div id="eventModal" class="modal hidden">
-          <div class="modal-content bg-blue-500 p-4 rounded-md shadow-md">
-            <span class="close text-white">&times;</span>
-            <h3 class="text-xl font-bold mb-4 text-white">Nuevo Evento</h3>
-            <form id="eventForm" class="space-y-4 text-white">
-              <label for="eventTitle" class="block">Título:</label>
-              <input type="text" id="eventTitle" required class="w-full p-2 border border-gray-300 rounded-md text-black">
-              <label for="eventDate" class="block">Fecha:</label>
-              <input type="date" id="eventDate" required class="w-full p-2 border border-gray-300 rounded-md text-black">
-              <label for="eventDescription" class="block">Descripción:</label>
-              <textarea id="eventDescription" class="w-full p-2 border border-gray-300 rounded-md text-black"></textarea>
-              <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-400 focus:outline-none">Guardar</button>
-            </form>
-          </div>
-        </div>
-    
-        <div id="dayEventsModal" class="modal hidden">
-          <div class="modal-content bg-white p-4 rounded-md shadow-md">
-            <span class="close" id="closeDayEvents">&times;</span>
-            <h3 id="dayEventsTitle" class="text-xl font-bold mb-4"></h3>
-            <ul id="dayEventsList" class="list-disc text-gray-800"></ul>
-          </div>
-        </div>
-      </div>
-    
+     
     
   <script src="../js/db.js"></script>
   <script src="../js/index.js"></script>
