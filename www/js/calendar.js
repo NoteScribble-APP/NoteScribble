@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (let i = firstDayIndex; i > 0; i--) {
             days += `<div class="prev-date">${lastDay - i + 1}</div>`;
+            
         }
 
         for (let i = 1; i <= lastDay; i++) {

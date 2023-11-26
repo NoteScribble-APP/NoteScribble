@@ -21,18 +21,19 @@ request.onupgradeneeded = function(event){
         const notesObjectStore = db.createObjectStore(noteObjectStoreName, {keyPath: "id", autoIncrement: true});
         notesObjectStore.createIndex("titulo", "titulo", {unique: false});
         notesObjectStore.createIndex("contenido", "contenido", {unique: false});
+        notesObjectStore.createIndex("idUser", "idUser", {unique: false});
+        notesObjectStore.createIndex("id2", "id2", {unique:false})
 
         console.log("Tabla 'Notes' creada con exito");
     }
 }
 
 //*** ADDNOTES ***/
-function addNote(titulo, contenido) {
+function addNote(titulo, contenido, userId, id2) {
     const transaction = db.transaction([noteObjectStoreName], "readwrite");
-
     const notesObjectStore = transaction.objectStore(noteObjectStoreName);
 
-    const newNote = { titulo: titulo, contenido: contenido };
+    const newNote = { titulo: titulo, contenido: contenido, idUser: userId, id2: id2 };
 
     const request = notesObjectStore.add(newNote);
 
@@ -49,8 +50,12 @@ function addNote(titulo, contenido) {
 document.getElementById("btnAddNote").addEventListener("click", function () {
     const noteTitle = document.getElementById("inputTitle").value;
     const noteContent = document.getElementById("inputContent").value;
+    const userId = localStorage.getItem('accessToken');
 
-    addNote(noteTitle, noteContent);
+    console.log("ID USER" , localStorage.getItem('accessToken'))
+    const id2 = Date.now();
+
+    addNote(noteTitle, noteContent, userId, id2);
 });
 
 //*** VIEWNOTES ***//
@@ -219,3 +224,6 @@ function saveEdit() {
 function obtenerNotaActual() {
     return nota;
 }
+
+//***** RECORDATORIOS ******/
+
