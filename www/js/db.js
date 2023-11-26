@@ -74,10 +74,12 @@ function addNote(titulo, contenido, userId, id2) {
 function showNotes() {
     document.getElementById("formularioNota").classList.add("hidden");
 
+    const userId = localStorage.getItem('accessToken');
+
     const transaction = db.transaction([noteObjectStoreName], "readonly");
     const notesObjectStore = transaction.objectStore(noteObjectStoreName);
 
-    const request = notesObjectStore.getAll();
+    const request = notesObjectStore.index('idUser').getAll(IDBKeyRange.only(userId));
 
     request.onsuccess = function (event) {
         const notas = event.target.result;
@@ -270,7 +272,8 @@ function AddReminderbtn() {
 }
 
 function showReminders() {
-    console.log("Entrando a showReminders");
+
+    const userId = localStorage.getItem('accessToken');
 
     const remindersList = document.getElementById("remindersList");
     const sinReminders = document.getElementById("sinReminders");
@@ -280,15 +283,15 @@ function showReminders() {
     const transaction = db.transaction([reminderObjectStoreName], "readonly");
     const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
 
-    const request = remindersObjectStore.getAll();
+    const request = remindersObjectStore.index('idUser').getAll(IDBKeyRange.only(userId));
 
     request.onsuccess = function (event) {
         const reminders = event.target.result;
-        console.log("Reminders obtenidos:", reminders);
+        //console.log("Reminders obtenidos:", reminders);
 
         if (reminders.length > 0) {
             reminders.forEach(function (reminder) {
-                console.log("Mostrando reminder:", reminder);
+                //console.log("Mostrando reminder:", reminder);
 
                 const reminderContainer = document.createElement("div");
 
