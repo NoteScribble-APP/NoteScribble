@@ -1,5 +1,6 @@
 const dbName = "NoteScribble"
 const noteObjectStoreName = "Notes";
+const reminderObjectStoreName = "Reminders";
 
 let db;
 
@@ -26,7 +27,28 @@ request.onupgradeneeded = function(event){
 
         console.log("Tabla 'Notes' creada con exito");
     }
+
+    if(!db.objectStoreNames.contains(reminderObjectStoreName)){
+        const remindersObjectStore = db.createObjectStore(reminderObjectStoreName, {keyPath: "id", autoIncrement: true});
+        remindersObjectStore.createIndex("titulo", "titulo", {unique: false});
+        remindersObjectStore.createIndex("contenido", "contenido", {unique: false});
+        remindersObjectStore.createIndex("fecha", "fecha", {unique: false});
+        remindersObjectStore.createIndex("hora", "hora", {unique: false});
+        remindersObjectStore.createIndex("idUser", "idUser", {unique: false});
+        remindersObjectStore.createIndex("id2", "id2", {unique:false})
+
+        console.log("Tabla 'Reminders' creada con exito");
+    }
 }
+
+    document.getElementById("btnAddNote").addEventListener("click", function () {
+        const noteTitle = document.getElementById("inputTitle").value;
+        const noteContent = document.getElementById("inputContent").value;
+        const userId = localStorage.getItem('accessToken');
+        const id2 = Date.now();
+
+        addNote(noteTitle, noteContent, userId, id2);
+    });
 
 //*** ADDNOTES ***/
 function addNote(titulo, contenido, userId, id2) {
@@ -46,17 +68,6 @@ function addNote(titulo, contenido, userId, id2) {
         console.error(event.target.errorCode);
     };
 }
-
-document.getElementById("btnAddNote").addEventListener("click", function () {
-    const noteTitle = document.getElementById("inputTitle").value;
-    const noteContent = document.getElementById("inputContent").value;
-    const userId = localStorage.getItem('accessToken');
-
-    console.log("ID USER" , localStorage.getItem('accessToken'))
-    const id2 = Date.now();
-
-    addNote(noteTitle, noteContent, userId, id2);
-});
 
 //*** VIEWNOTES ***//
 
@@ -227,3 +238,90 @@ function obtenerNotaActual() {
 
 //***** RECORDATORIOS ******/
 
+function addReminder(titulo, contenido, userId, fecha, hora, id2) {
+
+        const transaction = db.transaction([reminderObjectStoreName], "readwrite");
+        const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
+
+        const newReminder = { titulo: titulo, contenido: contenido, idUser: userId, fecha: fecha, hora: hora, id2: id2 }
+
+        const request = remindersObjectStore.add(newReminder);
+
+        request.onsuccess = function (event) {
+            console.log("Recordatorio agregado con éxito");
+            alert("Recordatorio agregado con éxito");
+        }
+
+        request.onerror = function (event) {
+            console.log("Error al agregar recordatorio", event.target.errorCode);
+            alert("Error al agregar recordatario");
+        }
+}
+
+function AddReminderbtn() {
+    const reminderTitle = document.getElementById('eventTitle').value;
+    const reminderContent = document.getElementById('eventDescription').value;
+    const reminderDate = document.getElementById('eventDate').value;
+    const reminderTime = document.getElementById('eventTime').value;
+    const userId = localStorage.getItem('accessToken');
+    const id2 = Date.now();
+
+    addReminder(reminderTitle, reminderContent, userId, reminderDate, reminderTime, id2);
+}
+
+function showReminders() {
+    console.log("Entrando a showReminders");
+
+    const remindersList = document.getElementById("remindersList");
+    const sinReminders = document.getElementById("sinReminders");
+
+    remindersList.innerHTML = "";
+
+    const transaction = db.transaction([reminderObjectStoreName], "readonly");
+    const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
+
+    const request = remindersObjectStore.getAll();
+
+    request.onsuccess = function (event) {
+        const reminders = event.target.result;
+        console.log("Reminders obtenidos:", reminders);
+
+        if (reminders.length > 0) {
+            reminders.forEach(function (reminder) {
+                console.log("Mostrando reminder:", reminder);
+
+                const reminderContainer = document.createElement("div");
+
+                const titleElement = document.createElement("h3");
+                const contentElement = document.createElement("p");
+                const dateElement = document.createElement("p");
+                const timeElement = document.createElement("p");
+
+                titleElement.textContent = `Titulo: ${reminder.titulo}`;
+                contentElement.textContent = `Descripcion: ${reminder.contenido}`;
+                dateElement.textContent = `Fecha: ${reminder.fecha}`;
+                timeElement.textContent = `Hora: ${reminder.hora}`;
+
+                reminderContainer.appendChild(titleElement);
+                reminderContainer.appendChild(contentElement);
+                reminderContainer.appendChild(dateElement);
+                reminderContainer.appendChild(timeElement);
+
+                remindersList.appendChild(reminderContainer);
+
+                const separator = document.createElement("hr");
+                remindersList.appendChild(separator);
+            });
+
+            sinReminders.classList.add("hidden");
+        } else {
+            sinReminders.classList.remove("hidden");
+        }
+
+        document.getElementById("listadoReminders").classList.remove("hidden");
+    };
+
+    request.onerror = function (event) {
+        console.error("Error al obtener recordatorios:", event.target.error);
+    };
+}

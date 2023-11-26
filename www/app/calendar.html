@@ -122,9 +122,11 @@
               <input type="text" id="eventTitle" required class="w-full p-2 border border-gray-300 rounded-md text-black">
               <label for="eventDate" class="block">Fecha:</label>
               <input type="date" id="eventDate" required class="w-full p-2 border border-gray-300 rounded-md text-black">
+              <label for="eventTime" class="block">Hora:</label>
+              <input type="time" id="eventTime" required class="w-full p-2 border border-gray-300 rounded-md text-black">
               <label for="eventDescription" class="block">Descripción:</label>
               <textarea id="eventDescription" class="w-full p-2 border border-gray-300 rounded-md text-black"></textarea>
-              <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-400 focus:outline-none">Guardar</button>
+              <button type="button" id="btnReminder" onclick="AddReminderbtn()" class="bg-yellow-500 text-white px-3 sm:px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-700">Guardar Nota</button>
             </form>
           </div>
         </div>
@@ -137,10 +139,11 @@
           </div>
         </div>
       </div>
+
     
-    
-  <script src="../js/db.js"></script>
-  <script src="../js/index.js"></script>
+ 
+ <script src="../js/db.js"></script>     
+ <script src="../js/index.js"></script>
  <script src="../js/calendar.js"></script>
 </body>
 </html>
