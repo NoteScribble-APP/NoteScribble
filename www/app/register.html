@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover"/>
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
     <meta name="color-scheme" content="light" />
-    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&family=Coiny&family=Sriracha&family=Varela+Round&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&family=Coiny&family=Sriracha&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../output.css" />
-    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" href="../css/index.css" />
     <title>Registrarse</title>
-</head>
+  </head>
 
-<body class="font-Coiny bg-index">
-    
+  <body class="font-Coiny bg-index">
     <div class="h-screen flex items-center justify-center">
-        <div class="sm:w-[60%] md:w-[60%] lg:w-[30%] px-4 sm:px-8 bg-blue-600 rounded-lg">
-            
-            <form class="flex flex-col h-[560px]">
-                
-                <h1 class="mt-10 mb-5 text-4xl text-center text-white">Registrarse</h1>
-                
-                <div class="mt-5"> 
-                    <label for="username" class="text-white">Nombre de usuario:</label>
-                    <input type="text" name="username" id="username" class="rounded-lg p-2 w-full mt-4" placeholder="username">
-                </div>
-                
-                <div class="mt-5"> 
-                    <label for="email"class="text-white">Email:</label>
-                    <input type="text" name="email" id="email" class="rounded-lg p-2 w-full mt-4" placeholder="email">
-                </div>
-                
-                <div class="mt-5 mb-12">
-                    <label for="password" class="text-white">Password:</label>
-                    <input type="text" name="password" id="password" class="rounded-lg p-2 w-full mt-4" placeholder="password">
-                </div>
-                
-                <button type="button" class="bg-yellow-500 p-2 text-white rounded-lg" onclick="RegisterUser()">Registrarse</button>
-                
-            </form>
-        </div>
+      <div
+        class="sm:w-[60%] md:w-[60%] lg:w-[30%] px-4 sm:px-8 bg-blue-600 rounded-lg"
+      >
+        <form class="flex flex-col h-[560px]">
+          <h1 class="mt-10 mb-5 text-4xl text-center text-white">
+            Registrarse
+          </h1>
+
+          <div class="mt-5">
+            <label for="username" class="text-white">Nombre de usuario:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="rounded-lg p-2 w-full mt-4"
+              placeholder="username"
+            />
+          </div>
+
+          <div class="mt-5">
+            <label for="email" class="text-white">Email:</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              class="rounded-lg p-2 w-full mt-4"
+              placeholder="email"
+            />
+          </div>
+
+          <div class="mt-5 mb-12">
+            <label for="password" class="text-white">Password:</label>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              class="rounded-lg p-2 w-full mt-4"
+              placeholder="password"
+            />
+          </div>
+
+          <button
+            type="button"
+            class="bg-yellow-500 p-2 text-white rounded-lg"
+            onclick="RegisterUser()"
+          >
+            Registrarse
+          </button>
+        </form>
+      </div>
     </div>
-    
-    
+
     <script src="../cordova.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/apiUsers.js"></script>
-</body>
+  </body>
 </html>
