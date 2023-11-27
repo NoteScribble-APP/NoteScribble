@@ -79,7 +79,13 @@ function showNotes() {
     const transaction = db.transaction([noteObjectStoreName], "readonly");
     const notesObjectStore = transaction.objectStore(noteObjectStoreName);
 
-    const request = notesObjectStore.index('idUser').getAll(IDBKeyRange.only(userId));
+    let request 
+
+    if (userId) {
+        request = notesObjectStore.index('idUser').getAll(IDBKeyRange.only(userId));
+    } else {
+        request = notesObjectStore.getAll();
+    }
 
     request.onsuccess = function (event) {
         const notas = event.target.result;
@@ -283,14 +289,19 @@ function showReminders() {
     const transaction = db.transaction([reminderObjectStoreName], "readonly");
     const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
 
-    const request = remindersObjectStore.index('idUser').getAll(IDBKeyRange.only(userId));
+    let request 
 
+    if (userId) {
+        request = remindersObjectStore.index('idUser').getAll(IDBKeyRange.only(userId));
+    } else {
+        request = remindersObjectStore.getAll();
+    }
     request.onsuccess = function (event) {
         const reminders = event.target.result;
         //console.log("Reminders obtenidos:", reminders);
 
         if (reminders.length > 0) {
-            reminders.forEach(function (reminder) {
+            reminders.forEach(function (reminder, index) {
                 //console.log("Mostrando reminder:", reminder);
 
                 const reminderContainer = document.createElement("div");
@@ -310,9 +321,31 @@ function showReminders() {
                 reminderContainer.appendChild(dateElement);
                 reminderContainer.appendChild(timeElement);
 
+                const editButtonR = document.createElement("button");
+                editButtonR.textContent = "Editar";
+                editButtonR.style.marginRight = "10px"
+                editButtonR.classList.add("bg-yellow-500", "text-white", "py-2", "px-4", "rounded", "border",  "border-blue-700", "hover:bg-blue-700", "hover:border-blue-900", "transition", "duration-300", "ease-in-out", "transform", "hover:scale-105");
+                editButtonR.addEventListener("click", function () {
+                    editReminder(index);
+                });
+
+                reminderContainer.appendChild(editButtonR);
+
+                const deleteButtonR = document.createElement("button");
+                deleteButtonR.textContent = "Eliminar";
+                deleteButtonR.classList.add("bg-red-500", "text-white", "py-2", "px-4", "rounded", "border",  "border-blue-700", "hover:bg-blue-700", "hover:border-blue-900", "transition", "duration-300", "ease-in-out", "transform", "hover:scale-105");
+                deleteButtonR.addEventListener("click", function () {
+                    deleteReminder(index);
+                    showReminders();
+                });
+
+                reminderContainer.appendChild(deleteButtonR);
+
                 remindersList.appendChild(reminderContainer);
 
                 const separator = document.createElement("hr");
+                separator.style.marginBottom = "20px";
+                separator.style.marginTop = "20px";
                 remindersList.appendChild(separator);
             });
 
@@ -328,3 +361,34 @@ function showReminders() {
         console.error("Error al obtener recordatorios:", event.target.error);
     };
 }
+
+ function editReminder (index) {
+     console.log("editando recordatorio con el indice: ", index)
+ }
+
+ function deleteReminder (index) {
+    const transaction = db.transaction([reminderObjectStoreName], "readwrite");
+    const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
+
+    const request = remindersObjectStore.getAll();
+
+    request.onsuccess = function (event) {
+        const notas = event.target.result;
+
+        if (index >= 0 && index < notas.length) {
+
+            const keyToDelete = notas[index].id;
+
+            const deleteRequest = remindersObjectStore.delete(keyToDelete);
+
+            deleteRequest.onsuccess = function () {
+                console.log("Nota eliminada con éxito");
+            };
+
+            deleteRequest.onerror = function () {
+                console.error("Error al eliminar la nota");
+            };
+        }
+    };
+     console.log("Eliminando recordatorio con el indice: ", index)
+ }
