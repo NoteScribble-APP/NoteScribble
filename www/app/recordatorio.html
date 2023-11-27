@@ -91,6 +91,32 @@
         <div id="remindersList" class="mt-4 sm:w-[50%] bg-blue-500 p-4 sm:p-6 rounded-md shadow-md mb-5 mx-auto"></div>
         <p id="sinReminders">No hay recordatorios.</p>
     </div>
+
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content bg-blue-500 p-4 sm:p-6 rounded-md shadow-md sm:w-[50%] mx-auto">
+          <span class="close text-white cursor-pointer" onclick="closeEditReminderForm()">&times;</span>
+          <h2 class="text-white mb-4 text-2xl font-semibold">Editar Recordatorio</h2>
+          <form id="editForm">
+            <div class="mb-4">
+              <label for="editTitle" class="block text-white mb-2 font-medium">Título:</label>
+              <input type="text" id="editTitle" name="editTitle" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="editDate" class="block text-white mb-2 font-medium">Fecha:</label>
+                <input type="date" id="editDate" name="editDate" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+              </div>
+              <div class="mb-4">
+                <label for="editTime" class="block text-white mb-2 font-medium">Hora:</label>
+                <input type="time" id="editTime" name="editTime" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+              </div>
+            <div class="mb-4">
+              <label for="editContent" class="block text-white mb-2 font-medium">Contenido:</label>
+              <textarea id="editContent" name="editContent" rows="4" class="w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+            <button type="button" onclick="saveEditReminder()" class="bg-yellow-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-yellow-700 focus:outline-none">Guardar Cambios</button>
+          </form>
+        </div>
+      </div>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {

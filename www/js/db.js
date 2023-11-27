@@ -224,7 +224,9 @@ function saveEdit() {
     const notaActualizada = {
         id: nota.id,
         titulo: editedTitle,
-        contenido: editedContent
+        contenido: editedContent,
+        idUser: nota.idUser,
+        id2: nota.id2
     };
 
     const updateRequest = notesObjectStore.put(notaActualizada);
@@ -296,6 +298,7 @@ function showReminders() {
     } else {
         request = remindersObjectStore.getAll();
     }
+    
     request.onsuccess = function (event) {
         const reminders = event.target.result;
         //console.log("Reminders obtenidos:", reminders);
@@ -362,16 +365,93 @@ function showReminders() {
     };
 }
 
+ var reminder;
+
  function editReminder (index) {
+
+    const transaction = db.transaction([reminderObjectStoreName], "readonly");
+    const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
+    
+    const request = remindersObjectStore.getAll();
+
+    request.onsuccess = function (event) {
+        const reminders = event.target.result;
+
+        if (index >= 0 && index < reminders.length) {
+            reminder = reminders[index];
+            showEditReminderForm(reminder);
+        }
+    };
+
      console.log("editando recordatorio con el indice: ", index)
  }
+
+ function showEditReminderForm(reminder) {
+
+    const editTitleInput = document.getElementById("editTitle");
+    const editContentInput = document.getElementById("editContent");
+    const editDateInput = document.getElementById("editDate");
+    const editTimeInput = document.getElementById("editTime");
+    
+    editTitleInput.value = reminder.titulo;
+    editContentInput.value = reminder.contenido;
+    editDateInput.value = reminder.fecha;
+    editTimeInput.value = reminder.hora;
+
+    const editModal = document.getElementById("editModal");
+    editModal.classList.toggle("hidden", false);
+  }
+
+  function closeEditReminderForm() {
+    const editModal = document.getElementById("editModal");
+    editModal.classList.toggle("hidden", true);
+}
+
+function saveEditReminder() {
+
+    const editedTitle = document.getElementById("editTitle").value;
+    const editedContent = document.getElementById("editContent").value;
+    const editedDate = document.getElementById("editDate").value;
+    const editedTime = document.getElementById("editTime").value;
+
+    const reminder = obtenerNotaActualR();
+
+    const transaction = db.transaction([reminderObjectStoreName], "readwrite");
+    const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
+
+    const recordatorioActualizado = {
+        id: reminder.id,
+        titulo: editedTitle,
+        contenido: editedContent,
+        fecha: editedDate,
+        hora: editedTime,
+        idUser: reminder.idUser,
+        id2: reminder.id2
+    };
+
+    const updateRequest = remindersObjectStore.put(recordatorioActualizado);
+
+    updateRequest.onsuccess = function (event) {
+        console.log("Recordatorio actualizado con éxito en la base de datos");
+        closeEditReminderForm();
+        showReminders();
+    };
+
+    updateRequest.onerror = function (event) {
+        console.error("Error al actualizar la nota en la base de datos", event.target.error);
+    };
+}
+
+function obtenerNotaActualR() {
+    return reminder;
+}
 
  function deleteReminder (index) {
     const transaction = db.transaction([reminderObjectStoreName], "readwrite");
     const remindersObjectStore = transaction.objectStore(reminderObjectStoreName);
 
-    const request = remindersObjectStore.getAll();
-
+      const request = remindersObjectStore.getAll();
+  
     request.onsuccess = function (event) {
         const notas = event.target.result;
 
@@ -390,5 +470,5 @@ function showReminders() {
             };
         }
     };
-     console.log("Eliminando recordatorio con el indice: ", index)
+    // console.log("Eliminando recordatorio con el indice: ", index)
  }
