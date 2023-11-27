@@ -3,21 +3,29 @@
 @tailwind utilities;
 
 .bg-index {
-    background: #36349C;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #36349C, #4946ED);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #36349C, #4946ED); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
-  } 
-  
-.br-2.anim{
-    opacity: 0;
+  background: #36349c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #36349c,
+    #4946ed
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #36349c,
+    #4946ed
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.br-2.anim {
+  opacity: 0;
 }
 
 .br-1.anim {
-    transform: rotate(45deg) translate(9px, 8px);
-    transform-origin: 0 0;
+  transform: rotate(45deg) translate(9px, 8px);
+  transform-origin: 0 0;
 }
 
 .br-3.anim {
-    transform: rotate(-45deg) translate(-6px, 8px);
-    transform-origin: 0 0;
+  transform: rotate(-45deg) translate(-6px, 8px);
+  transform-origin: 0 0;
 }

@@ -7,14 +7,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-local-notification": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-local-notification@^0.9.0-beta.2"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-device": {
     "source": {
       "type": "registry",
@@ -29,14 +21,6 @@
       "id": "cordova-plugin-badge@>=0.8.5"
     },
     "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-calendar": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-calendar@5.1.6"
-    },
-    "is_top_level": true,
     "variables": {}
   }
 }
